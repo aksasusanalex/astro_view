@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroEdu – Explore Space</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      background: linear-gradient(180deg, #0d0d2b, #2c0a4e);
+      overflow: hidden;
+    }
+
+    /* Background stars */
+    .stars {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #ffd700;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 8rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #8a2be2, 0 0 20px #4b0082;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero button {
+      background: #8a2be2;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #8a2be2;
+    }
+
+    .hero button:hover {
+      background: #4b0082;
+      box-shadow: 0 0 20px #ba55d3;
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .team-name {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-shadow: 0 0 8px #7b68ee;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <header>
+    <h1>🚀 AstroEdu</h1>
+    <nav>
+      <a href="planets.html">Planets</a>
+      <a href="missions.html">Missions</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="dictionary.html">Dictionary</a>
+      <a href="spaceview.html">Your Space View</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Explore the Universe</h2>
+    <p>Journey through space with planets, missions, and cosmic knowledge.</p>
+    <button onclick="window.location.href='planets.html'">Start Exploring</button>
+  </section>
+
+  <footer>
+    <p class="team-name">✨ Team CosmosCoders ✨</p>
+  </footer>
+
+  <script>
+    // Generate random blinking stars
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+      let star = document.createElement('div');
+      let size = Math.random() * 3 + 1 + 'px';
+      star.className = 'star';
+      star.style.width = size;
+      star.style.height = size;
+      star.style.top = Math.random() * window.innerHeight + 'px';
+      star.style.left = Math.random() * window.innerWidth + 'px';
+      star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
