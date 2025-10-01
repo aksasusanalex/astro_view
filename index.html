@@ -160,21 +160,31 @@
       starsContainer.appendChild(star);
     }
   </script>
-  <script>
+ <script>
 function getLocation() {
     const output = document.getElementById("location-output");
 
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
+        navigator.geolocation.getCurrentPosition(sendPosition, showError);
     } else {
         output.innerHTML = "Geolocation is not supported by your browser.";
     }
 }
 
-function showPosition(position) {
-    document.getElementById("location-output").innerHTML =
-        "Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;
+function sendPosition(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    fetch("/get_fact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lat: lat, lon: lon })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("location-output").innerHTML =
+            `<strong>${data.location}</strong><br>${data.fact}`;
+    });
 }
 
 function showError(error) {
@@ -194,7 +204,9 @@ function showError(error) {
 }
 </script>
 
+
 </body>
 </html>
+
 
 
